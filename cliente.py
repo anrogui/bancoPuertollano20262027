@@ -1,8 +1,15 @@
-from models import Cliente
+from models import Cliente, Deposito, CuentaBancaria
 from logs import Log
 
 log = Log()
 
+def __init__(self, numCliente):
+        self.numCliente = numCliente
+        self.cuenta = CuentaBancaria()
+        self.deposito = Deposito()
+
+def getSaldoTotal(self):
+        return self.cuenta.saldo + self.deposito.saldo
 def cargarCliente(tipo):
     while True:
         num = input("Introduce el número de cliente: ")
@@ -73,6 +80,9 @@ def cargarClienteGuardado(numCliente):
 
             cliente.cuenta.saldo = float(datos[1])
             cliente.deposito.saldo = float(datos[2])
+            print(f"Saldo cuenta: {cliente.cuenta.saldo} €")
+            print(f"Saldo depósito: {cliente.deposito.saldo} €")
+            print(f"Saldo total: {cliente.getSaldoTotal()} €")
 
             return cliente
 
