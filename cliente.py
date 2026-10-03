@@ -20,7 +20,11 @@ def cargarCliente(tipo):
 
 def leerFichero(numCliente):
 
+
     cliente = Cliente(numCliente)
+    contador_movimientos = 0
+
+    while linea:
 
     try:
         with open(f"ficherosClientes/{numCliente}.txt", "r") as f:
@@ -37,16 +41,19 @@ def leerFichero(numCliente):
 
                 if destino == "Cuenta" and operacion == "Ingreso":
                     cliente.cuenta.ingresar(cantidad)
+                    contador_movimientos += 1
 
                 elif destino == "Cuenta" and operacion == "Retirada":
                     cliente.cuenta.retirar(cantidad)
+                    contador_movimientos += 1
 
                 elif destino == "Deposito" and operacion == "Ingreso":
                     cliente.deposito.ingresar(cantidad)
+                    contador_movimientos += 1
 
                 elif destino == "Deposito" and operacion == "Retirada":
                     cliente.deposito.retirar(cantidad)
-
+                    contador_movimientos += 1
                 linea = f.readline()
 
         # Guardamos el estado final del cliente
@@ -54,6 +61,11 @@ def leerFichero(numCliente):
 
         print("Datos del cliente cargados correctamente")
 
+        mensaje_contador = f"Movimientos procesados: {contador_movimientos}"
+        print(mensaje_contador)
+        log.info(mensaje_contador)
+
+        cliente.guardar()
         return cliente
 
     except FileNotFoundError:
