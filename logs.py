@@ -20,3 +20,6 @@ class Log:
     def error(self, param):
         pass
 
+    def info(self, resumen_mensaje):
+        self.escribir("INFO", resumen_mensaje)
+

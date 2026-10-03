@@ -42,17 +42,15 @@ def cargarCliente(tipo):
             cliente = None
             cargando = False
     return cliente
+
 def leerFichero(numCliente):
-
-    cliente = Cliente(numCliente)
-
     try:
         with open(f"ficherosClientes/{numCliente}.txt", "r") as f:
-
             linea = f.readline()
 
-            while linea:
+            cliente = Cliente(numCliente)
 
+            while linea:
                 datos = linea.strip().split(";")
 
                 cantidad = float(datos[0])
@@ -72,18 +70,21 @@ def leerFichero(numCliente):
                     cliente.deposito.retirar(cantidad)
 
                 linea = f.readline()
-
-        # Guardamos el estado final del cliente
         cliente.guardar()
 
         print("Datos del cliente cargados correctamente")
 
+        resumen_mensaje = (f"Resumen de carga - Cliente: {numCliente} | "f"Saldo cuenta: {cliente.cuenta.saldo} € | "f"Saldo depósito: {cliente.deposito.saldo} €"
+        )
+        log.info(resumen_mensaje)
+
         return cliente
 
     except FileNotFoundError:
+        mensaje_error = f"Intento fallido de cargar movimientos: El cliente {numCliente} no existe en ficherosClientes."
         print("El usuario no tiene ninguna cuenta con el banco")
+        log.error(mensaje_error)
         return None
-
 
 def cargarClienteGuardado(numCliente):
 
