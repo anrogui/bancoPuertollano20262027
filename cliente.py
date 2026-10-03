@@ -64,7 +64,7 @@ def leerFichero(numCliente):
                     log.error(mensaje_error)
 
                 linea = f.readline()
-                
+
         cliente.guardar()
 
         print("Datos del cliente cargados correctamente")
