@@ -16,3 +16,9 @@ class Log:
 
         with open(self.ruta, "a") as fichero:
             fichero.write(f"[{fecha_hora}] [{tipo.upper()}] {mensaje}\n")
+
+    def info(self, resumen_mensaje):
+        self.escribir("INFO", resumen_mensaje)
+
+    def error(self, mensaje_error):
+        self.escribir("ERROR", mensaje_error)
