@@ -17,7 +17,6 @@ def cargarCliente(tipo):
         elif tipo == "guardado":
             return cargarClienteGuardado(num)
 
-
 def leerFichero(numCliente):
 
     cliente = Cliente(numCliente)
@@ -49,7 +48,6 @@ def leerFichero(numCliente):
 
                 linea = f.readline()
 
-        # Guardamos el estado final del cliente
         cliente.guardar()
 
         print("Datos del cliente cargados correctamente")
