@@ -1,7 +1,6 @@
 from datetime import datetime
 import os
 
-
 class Log:
 
     def __init__(self):
@@ -14,5 +13,10 @@ class Log:
     def escribir(self, tipo, mensaje):
         fecha_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+        tipo = tipo.upper()
+
+        if tipo != "INFO" and tipo != "WARNING" and tipo != "ERROR":
+            tipo = "INFO"
+
         with open(self.ruta, "a") as fichero:
-            fichero.write(f"[{fecha_hora}] [{tipo.upper()}] {mensaje}\n")
+            fichero.write(f"[{fecha_hora}] [{tipo}] {mensaje}\n")
