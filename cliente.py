@@ -46,6 +46,11 @@ def leerFichero(numCliente):
 
                 elif destino == "Deposito" and operacion == "Retirada":
                     cliente.deposito.retirar(cantidad)
+                    
+                else:
+                    # Si no coincide con ninguna operación válida, lanzamos un WARNING
+                    mensaje_warning = f"Operación o destino desconocido ignorado: '{operacion}' en '{destino}' (Cliente {numCliente})"
+                    log.escribir("WARNING", mensaje_warning)
 
                 linea = f.readline()
 
