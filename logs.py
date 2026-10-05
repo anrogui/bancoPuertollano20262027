@@ -16,3 +16,7 @@ class Log:
 
         with open(self.ruta, "a") as fichero:
             fichero.write(f"[{fecha_hora}] [{tipo.upper()}] {mensaje}\n")
+
+    def error(self, param):
+        pass
+
